@@ -18,3 +18,8 @@ main p {
   color: #a9a9ad;
   line-height: 1.6;
 }
+
+
+.posts-feed {
+  margin-top: 32px;
+}

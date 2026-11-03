@@ -1,0 +1,53 @@
+
+.post-card {
+  background-color: #292b2f;
+  border: 1px solid #343538;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.post-card:hover {
+  border-color: #c9a45c;
+}
+
+.post-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.post-category {
+  color: #c9a45c;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.post-date {
+  color: #a9a9ad;
+  font-size: 12px;
+}
+
+.post-title {
+  color: #f0ede7;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 20px;
+}
+
+.post-upvotes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #a9a9ad;
+  font-size: 14px;
+}
+
+.post-upvotes span:first-child {
+  color: #c9a45c;
+}
