@@ -1,11 +1,11 @@
+
+import Navbar from './components/Navbar'
 import './App.css'
 
 function App() {
   return (
     <div className="app">
-      <header className="navbar">
-        <h1>SoundSizer</h1>
-      </header>
+      <Navbar />
 
       <main>
         <h2>Find your sound.</h2>
