@@ -2,40 +2,66 @@
 import { useState } from 'react'
 import './CreatePost.css'
 
+import { useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabase'
+
 function CreatePost() {
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const navigate = useNavigate()
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [imageUrl, setImageUrl] = useState('')
 
 
-  const handleSubmit = (event) => {
+  
+  const handleSubmit = async (event) => {
     event.preventDefault()
   
-    // Validate the post title
+    if (isSubmitting) return
+  
+    // Validate title
     if (title.trim() === '') {
-      alert('Please enter a post title.')
+      setSubmitError('Please enter a post title.')
       return
     }
   
-    // Construct the new post object
+    setIsSubmitting(true)
+    setSubmitError('')
+  
+    // Prepare data for the database
     const newPost = {
-      id: crypto.randomUUID(),
       title: title.trim(),
-      content: content.trim(),
-      image_url: imageUrl.trim(),
-      created_at: new Date().toISOString(),
-      upvotes: 0
+      content: content.trim() || null,
+      image_url: imageUrl.trim() || null
     }
   
-    // Temporary: inspect the post in the console
-    console.log('New post created:', newPost)
+    try {
+      const { error } = await supabase
+        .from('posts')
+        .insert([newPost])
   
-    // Clear the form
-    setTitle('')
-    setContent('')
-    setImageUrl('')
+      if (error) {
+        throw error
+      }
+  
+      // Clear fields after successful insert
+      setTitle('')
+      setContent('')
+      setImageUrl('')
+  
+      // Return to the Home feed
+      navigate('/')
+    } catch (error) {
+      console.error('Error creating post:', error)
+      setSubmitError('Could not create your post. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
+
 
 
   return (
@@ -87,9 +113,17 @@ function CreatePost() {
             placeholder="https://example.com/image.jpg"
           />
         </div>
-
-        <button type="submit" className="submit-button">
-          Create Post
+        {submitError && (
+          <p className="submit-error" role="alert">
+            {submitError}
+          </p>
+        )}
+        <button
+          type="submit"
+          className="submit-button"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Publishing...' : 'Create Post'}
         </button>
       </form>
     </main>

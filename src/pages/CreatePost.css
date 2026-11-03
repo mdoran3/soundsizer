@@ -96,3 +96,13 @@
   color: #a9a9ad;
   overflow-wrap: anywhere;
 }
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit-error {
+  color: #ff8a8a;
+  margin-bottom: 16px;
+}
