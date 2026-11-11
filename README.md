@@ -10,6 +10,14 @@ Built as a final project for **CodePath WEB102**, SoundSizer combines a React fr
 
 ![SoundSizer walkthrough](public/walkthrough.gif)
 
+## Deployment Walkthrough via Render
+
+This video demonstrates deploying SoundSizer to Render, configuring environment variables, and connecting Supabase.
+
+[![SoundSizer Deployment Walkthrough](public/Deploying%20a%20React%20Static%20Site%20on%20Render.gif)](https://www.loom.com/share/cd27d5e20af24d26b2f1a4839a48d2d4)
+
+[Watch the full deployment walkthrough on Loom](https://www.loom.com/share/cd27d5e20af24d26b2f1a4839a48d2d4)
+
 ## Screenshots
 
 ### Home
